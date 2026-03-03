@@ -1,97 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Private Video Upload</title>
+    <title>Holi Surprise</title>
     <style>
         body {
             margin: 0;
-            font-family: Arial;
-            text-align: center;
-            background: linear-gradient(45deg,#ff4e50,#f9d423);
-            color: white;
-        }
-
-        h1 { margin-top: 40px; }
-
-        #uploadSection, #videoSection {
-            margin-top: 40px;
-        }
-
-        input, button {
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 30px;
-            border: none;
-            font-size: 16px;
-        }
-
-        button {
-            background: white;
-            color: #ff4e50;
-            cursor: pointer;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         video {
             width: 90%;
-            max-width: 700px;
+            max-width: 800px;
             border-radius: 15px;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-<h1>🎉 Private Video Website 🎉</h1>
+<video controls>
+    <source src="yourvideo.mp4" type="video/mp4">
+</video>
 
-<div id="uploadSection">
-    <input type="password" id="adminPass" placeholder="Enter Admin Password">
-    <br>
-    <input type="file" id="videoInput" accept="video/mp4">
-    <br>
-    <button onclick="uploadVideo()">Upload Video</button>
-</div>
-
-<div id="videoSection" style="display:none;">
-    <video id="videoPlayer" controls></video>
-</div>
-
-<script>
-const PASSWORD = "aditya123"; // <-- apna password yaha change karo
-
-window.onload = function() {
-    let savedVideo = localStorage.getItem("savedVideo");
-    if(savedVideo) {
-        document.getElementById("uploadSection").style.display = "none";
-        document.getElementById("videoSection").style.display = "block";
-        document.getElementById("videoPlayer").src = savedVideo;
-    }
-}
-
-function uploadVideo() {
-    let pass = document.getElementById("adminPass").value;
-    let file = document.getElementById("videoInput").files[0];
-
-    if(pass !== PASSWORD) {
-        alert("Wrong Password!");
-        return;
-    }
-
-    if(!file) {
-        alert("Please select video!");
-        return;
-    }
-
-    let reader = new FileReader();
-    reader.onload = function(e) {
-        localStorage.setItem("savedVideo", e.target.result);
-        document.getElementById("uploadSection").style.display = "none";
-        document.getElementById("videoSection").style.display = "block";
-        document.getElementById("videoPlayer").src = e.target.result;
-    }
-
-    reader.readAsDataURL(file);
-}
-</script>
+</body>
+</html>
 
 </body>
 </html>
